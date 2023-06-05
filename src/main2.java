@@ -11,6 +11,12 @@ public class main2 {
     private void addCustomerToQueues(){
         System.out.println("Add customer to quoues");
     }
+    private void RemCustomerToQueues(){
+        System.out.println("Add customer to quoues");
+    }
+    private void RemServeCustomer(){
+        System.out.println("Add customer to quoues");
+    }
     public void foodoptions(){
         System.out.println ("100 or VFQ: View all Queues.");
         System.out.println ("101 or VEQ: View all Empty Queues.");
@@ -56,6 +62,12 @@ public class main2 {
         }
         else if(inputMenu.equals("102") || inputMenu.equals("ACQ")){
             emptyquoues.addCustomerToQueues();
+        }
+        else if(inputMenu.equals("103") || inputMenu.equals("RCQ")){
+            emptyquoues.RemCustomerToQueues();
+        }
+        else if(inputMenu.equals("104") || inputMenu.equals("PCQ")){
+            emptyquoues.RemServeCustomer();
         }
 
 
