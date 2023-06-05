@@ -12,11 +12,30 @@ public class main2 {
         System.out.println("Add customer to quoues");
     }
     private void RemCustomerToQueues(){
-        System.out.println("Add customer to quoues");
+        System.out.println("Remove customer to quoues");
     }
     private void RemServeCustomer(){
-        System.out.println("Add customer to quoues");
+        System.out.println("Remove Served customer to quoues");
     }
+    private void sortedCustomer(){
+        System.out.println("View Customers Sorted in alphabetical order");
+    }
+    private void storeProgrameDataF(){
+        System.out.println("Store Program Data into file");
+    }
+    private void loadProgrameDataF(){
+        System.out.println("Load Program Data from file");
+    }
+    private void viewRemainBurgers(){
+        System.out.println("Load Program Data from file");
+    }
+    private void addBurgerToStock(){
+        System.out.println("Load Program Data from file");
+    }
+    private void Exit(){
+        System.out.println("Load Program Data from file");
+    }
+
     public void foodoptions(){
         System.out.println ("100 or VFQ: View all Queues.");
         System.out.println ("101 or VEQ: View all Empty Queues.");
@@ -28,7 +47,7 @@ public class main2 {
         System.out.println("107 or LPD: Load Program Data from file.");
         System.out.println("108 or STK: View Remaining burgers Stock.");
         System.out.println("109 or AFS: Add burgers to Stock.");
-        System.out.println("999 or EXT: Exit the Program.\n");
+        System.out.println("999 or EXT: Exit the Program.");
         return ;
     }
 
@@ -47,33 +66,43 @@ public class main2 {
         //Calling a input to continue
         Scanner route = new Scanner(System.in);
         System.out.print("Press the method number to continue : ");
-        String inputMenu = route.nextLine();
+        String inputMenu = route.nextLine().toUpperCase();
 
-        //import main method objects
-        main2 emptyquoues = new main2();
 
         //Select quoue method
 
         if (inputMenu.equals("100") || inputMenu.equals("VFQ")){
-            emptyquoues.viewAllQueues();
+            obj.viewAllQueues();
         }
         else if(inputMenu.equals("101") || inputMenu.equals("VEQ")){
-            emptyquoues.viewEmptyQueues();
+            obj.viewEmptyQueues();
         }
         else if(inputMenu.equals("102") || inputMenu.equals("ACQ")){
-            emptyquoues.addCustomerToQueues();
+            obj.addCustomerToQueues();
         }
         else if(inputMenu.equals("103") || inputMenu.equals("RCQ")){
-            emptyquoues.RemCustomerToQueues();
+            obj.RemCustomerToQueues();
         }
         else if(inputMenu.equals("104") || inputMenu.equals("PCQ")){
-            emptyquoues.RemServeCustomer();
+            obj.RemServeCustomer();
         }
-
-
-
-
-
-
+        else if(inputMenu.equals("105") || inputMenu.equals("VCS")){
+            obj.sortedCustomer();
+        }
+        else if(inputMenu.equals("106") || inputMenu.equals("SPD")){
+            obj.storeProgrameDataF();
+        }
+        else if(inputMenu.equals("107") || inputMenu.equals("LPD")){
+            obj.loadProgrameDataF();
+        }
+        else if(inputMenu.equals("108") || inputMenu.equals("STK")){
+            obj.viewRemainBurgers();
+        }
+        else if(inputMenu.equals("109") || inputMenu.equals("AFS")){
+            obj.addBurgerToStock();
+        }
+        else if(inputMenu.equals("999") || inputMenu.equals("EXT")){
+            obj.Exit();
+        }
     }
 }
