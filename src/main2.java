@@ -34,8 +34,8 @@ public class main2 {
         System.out.print("Press the method number to continue : ");
         String inputMenu = route.nextLine();
 
-        switch (inputMenu){
-            case ()
+        if(inputMenu == "100" || inputMenu =="VFQ"){
+
         }
 
 
