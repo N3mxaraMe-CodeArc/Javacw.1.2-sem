@@ -136,39 +136,44 @@ public class main2 {
                                 cashierCustomers1++;
                                 totalCustomers++;
                                 System.out.println("Customer added to cashier 1");
+                                break;
                             } else {
                                 System.out.println("Cashier 1 is full. Please choose another cashier.");
                             }
-                            break;
+                            continue;
 
                         case 2:
                             if (cashierCustomers2 < MaxCashierCustomers2) {
                                 cashierCustomers2++;
                                 totalCustomers++;
                                 System.out.println("Customer added to cashier 2");
+                                break;
                             } else {
                                 System.out.println("Cashier 2 is full. Please choose another cashier.");
                             }
-                            break;
+                            continue;
 
                         case 3:
                             if (cashierCustomers3 < MaxCashierCustomers3) {
                                 cashierCustomers3++;
                                 totalCustomers++;
                                 System.out.println("Customer added to cashier 3");
+                                break;
                             } else {
                                 System.out.println("Cashier 3 is full. Please choose another cashier.");
                             }
-                            break;
+                            continue;
 
                         default:
                             System.out.println("Invalid cashier number. Please try again.");
-                            break;
+
                     }
                 } catch (Exception e) {
                     System.out.println("Invalid input. Please try again.");
                     route.nextLine();
+                    continue;
                 }
+                break;
             }
         }
     }
