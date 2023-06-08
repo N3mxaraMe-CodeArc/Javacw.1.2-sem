@@ -23,7 +23,7 @@ public class main2 {
         System.out.println("Empty Quoues");
     }
     private void addCustomerToQueues(){
-
+        //add
     }
     private void RemCustomerToQueues(){
         System.out.println("Remove customer to quoues");
@@ -224,7 +224,6 @@ public class main2 {
             main2.customers customer = new main2.customers();
             main2.foodQueue queue = obj.new foodQueue();
             queue.queue();
-
         }
         else if(inputMenu.equals("103") || inputMenu.equals("RCQ")){
             obj.RemCustomerToQueues();
