@@ -222,6 +222,9 @@ public class main2 {
         }
         else if(inputMenu.equals("102") || inputMenu.equals("ACQ")){
             main2.customers customer = new main2.customers();
+            main2.foodQueue queue = obj.new foodQueue();
+            queue.queue();
+
         }
         else if(inputMenu.equals("103") || inputMenu.equals("RCQ")){
             obj.RemCustomerToQueues();
