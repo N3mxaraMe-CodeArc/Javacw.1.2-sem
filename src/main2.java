@@ -117,59 +117,62 @@ public class main2 {
 
 
     class foodQueue{
+        public void queue() {
 
-        Scanner route = new Scanner(System.in);
+            Scanner route = new Scanner(System.in);
 
-        while (true) {
-            try {
-                if (totalCustomers == maxCustomers) {
-                    System.out.println("All cashiers are full. Program exiting...");
+            while (true) {
+                try {
+                    if (totalCustomers == maxCustomers) {
+                        System.out.println("All cashiers are full. Program exiting...");
+                    }
+
+                    System.out.print("Enter the cashier number (1, 2, 3): ");
+                    int cashierNumber = route.nextInt();
+
+                    switch (cashierNumber) {
+                        case 1:
+                            if (cashierCustomers1 < MaxCashierCustomers1) {
+                                cashierCustomers1++;
+                                totalCustomers++;
+                                System.out.println("Customer added to cashier 1");
+                            } else {
+                                System.out.println("Cashier 1 is full. Please choose another cashier.");
+                            }
+                            break;
+
+                        case 2:
+                            if (cashierCustomers2 < MaxCashierCustomers2) {
+                                cashierCustomers2++;
+                                totalCustomers++;
+                                System.out.println("Customer added to cashier 2");
+                            } else {
+                                System.out.println("Cashier 2 is full. Please choose another cashier.");
+                            }
+                            break;
+
+                        case 3:
+                            if (cashierCustomers3 < MaxCashierCustomers3) {
+                                cashierCustomers3++;
+                                totalCustomers++;
+                                System.out.println("Customer added to cashier 3");
+                            } else {
+                                System.out.println("Cashier 3 is full. Please choose another cashier.");
+                            }
+                            break;
+
+                        default:
+                            System.out.println("Invalid cashier number. Please try again.");
+                            break;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Invalid input. Please try again.");
+                    route.nextLine();
                 }
-
-                System.out.print("Enter the cashier number (1, 2, 3): ");
-                int cashierNumber = route.nextInt();
-
-                switch (cashierNumber) {
-                    case 1:
-                        if (cashierCustomers1 < MaxCashierCustomers1) {
-                            cashierCustomers1++;
-                            totalCustomers++;
-                            System.out.println("Customer added to cashier 1");
-                        } else {
-                            System.out.println("Cashier 1 is full. Please choose another cashier.");
-                        }
-                        break;
-
-                    case 2:
-                        if (cashierCustomers2 < MaxCashierCustomers2) {
-                            cashierCustomers2++;
-                            totalCustomers++;
-                            System.out.println("Customer added to cashier 2");
-                        } else {
-                            System.out.println("Cashier 2 is full. Please choose another cashier.");
-                        }
-                        break;
-
-                    case 3:
-                        if (cashierCustomers3 < MaxCashierCustomers3) {
-                            cashierCustomers3++;
-                            totalCustomers++;
-                            System.out.println("Customer added to cashier 3");
-                        } else {
-                            System.out.println("Cashier 3 is full. Please choose another cashier.");
-                        }
-                        break;
-
-                    default:
-                        System.out.println("Invalid cashier number. Please try again.");
-                        break;
-                }
-            } catch (Exception e) {
-                System.out.println("Invalid input. Please try again.");
-                route.nextLine();
             }
         }
     }
+
 
     //-------------------------- Food Option Part ------------------------------------------
 
