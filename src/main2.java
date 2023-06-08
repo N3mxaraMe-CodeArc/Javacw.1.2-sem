@@ -1,9 +1,24 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class main2 {
 
     private void viewAllQueues(){
-        System.out.println("Show All quoues");
+
+        for (int i=0; i<17; i++){
+            System.out.print("*");
+        }
+        System.out.println("*");
+        System.out.print("*    Cashiers    ");
+        System.out.println("*");
+        for (int i=0; i<17; i++){
+            System.out.print("*");
+        }
+        System.out.println("*");
+        //Display cashier counters
+
+        System.out.println("( X – Not Occupied / O – Occupied )");
+
     }
     private void viewEmptyQueues(){
         System.out.println("Empty Quoues");
@@ -34,6 +49,14 @@ public class main2 {
     }
     private void Exit(){
         System.out.println("Load Program Data from file");
+    }
+
+    static class customers{
+
+    }
+
+    static class foodQueue{
+
     }
 
     public void foodoptions(){
