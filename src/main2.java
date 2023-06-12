@@ -46,7 +46,7 @@ public class main2 {
         System.out.println("Load Program Data from file");
     }
     private void viewRemainBurgers(){
-        System.out.println("Load Program Data from file");
+        System.out.println(burgerCount);
     }
     private void addBurgerToStock(){
         System.out.println("Load Program Data from file");
@@ -55,7 +55,8 @@ public class main2 {
         System.out.println("Load Program Data from file");
     }
     private void ViewIncome(){
-        System.out.println("Total Income : "+ (burgerCount*650));
+        SoldBurgers = (50 - burgerCount);
+        System.out.println("Total Income : Rs."+ (SoldBurgers*650)+ ".00");
     }
 
     //----------------------  Name / burger Validation Part  -------------------------
@@ -85,6 +86,7 @@ public class main2 {
     int cashierCustomers3 = 0;
     int totalCustomers = 0;
     int burgerCount = 50 ;
+    int SoldBurgers = 0;
     static final int MaxCashierCustomers1 = 2;
     static final int MaxCashierCustomers2 = 3;
     static final int MaxCashierCustomers3 = 5;
@@ -266,7 +268,7 @@ public class main2 {
             } else if (inputMenu.equals("110") || inputMenu.equals("IFQ")) {
                 obj.ViewIncome();
             } else if (inputMenu.equals("999") || inputMenu.equals("EXT")) {
-                obj.Exit();
+                break;
             }
             else {
                 System.out.println("Please enter the Valid Method");
