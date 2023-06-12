@@ -14,6 +14,11 @@ public class main2 {
             System.out.print("*");
         }
         System.out.println("*");
+        System.out.println("Remaining burgers : "+burgerCount);
+        System.out.println("Total NUmber of customers : "+totalCustomers);
+        System.out.println("Customers In Cashier 1 : "+cashierCustomers1);
+        System.out.println("Customers In Cashier 2 : "+cashierCustomers2);
+        System.out.println("Customers In Cashier 3 : "+cashierCustomers3);
         //Display cashier counters
 
         System.out.println("( X – Not Occupied / O – Occupied )");
@@ -75,12 +80,11 @@ public class main2 {
         return customerName;
     }
 
-
-     int cashierCustomers1 = 0;
-     int cashierCustomers2 = 0;
+    int cashierCustomers1 = 0;
+    int cashierCustomers2 = 0;
     int cashierCustomers3 = 0;
     int totalCustomers = 0;
-    int burgerCount = 0 ;
+    int burgerCount = 50 ;
     static final int MaxCashierCustomers1 = 2;
     static final int MaxCashierCustomers2 = 3;
     static final int MaxCashierCustomers3 = 5;
@@ -90,25 +94,12 @@ public class main2 {
 
     //----------------- Class burger count and Validation -------------------------------------
 
-    public int burgerCount(String NoOfBurgers){
-
-        System.out.println("No of " + NoOfBurgers +" : ");
-        Scanner route = new Scanner(System.in);
-        int BurgerRequaired = route.nextInt();
-        burgerCount = (BurgerRequaired+burgerCount);
-
-        return BurgerRequaired;
-    }
-
 
     static class customers{
 
         main2 validateName = new main2();
         String firstName = validateName.nameValid("First Name");
         String lastName = validateName.nameValid("Last Name");
-
-        main2 objBurger = new main2();
-        int RequairedBurger = objBurger.burgerCount("Burgers Requaired");
 
     }
 
@@ -135,7 +126,13 @@ public class main2 {
                             if (cashierCustomers1 < MaxCashierCustomers1) {
                                 cashierCustomers1++;
                                 totalCustomers++;
-                                System.out.println("Customer added to cashier 1");
+                                burgerCount=(burgerCount-5);
+                                System.out.println("Customer added to cashier 1.\n======================================================================");
+                                if (cashierCustomers1==1){
+                                    System.out.println("Alert : Remaining Only 1 Customer to add Cashier Number 1");
+                                } else if (cashierCustomers1==MaxCashierCustomers1) {
+                                    System.out.println("Warning : Cashier Number 1 is in Maximum Customers");
+                                }
                                 break;
                             } else {
                                 System.out.println("Cashier 1 is full. Please choose another cashier.");
@@ -145,8 +142,14 @@ public class main2 {
                         case 2:
                             if (cashierCustomers2 < MaxCashierCustomers2) {
                                 cashierCustomers2++;
+                                burgerCount=(burgerCount-5);
                                 totalCustomers++;
-                                System.out.println("Customer added to cashier 2");
+                                System.out.println("Customer added to cashier 2\n======================================================================");
+                                if (cashierCustomers2==2){
+                                    System.out.println("Alert : Remaining Only 1 Customer to add Cashier Number 2");
+                                }else if (cashierCustomers2==MaxCashierCustomers2) {
+                                    System.out.println("Warning : Cashier Number 2 is in Maximum Customers");
+                                }
                                 break;
                             } else {
                                 System.out.println("Cashier 2 is full. Please choose another cashier.");
@@ -157,7 +160,13 @@ public class main2 {
                             if (cashierCustomers3 < MaxCashierCustomers3) {
                                 cashierCustomers3++;
                                 totalCustomers++;
-                                System.out.println("Customer added to cashier 3");
+                                burgerCount=(burgerCount-5);
+                                System.out.println("Customer added to cashier 3\n======================================================================");
+                                if (cashierCustomers3==4){
+                                    System.out.println("Alert : Remaining Only 1 Customer to add Cashier Number 3");
+                                }else if (cashierCustomers3==MaxCashierCustomers3) {
+                                    System.out.println("Warning : Cashier Number 3 is in Maximum Customers");
+                                }
                                 break;
                             } else {
                                 System.out.println("Cashier 3 is full. Please choose another cashier.");
@@ -173,6 +182,16 @@ public class main2 {
                     route.nextLine();
                     continue;
                 }
+                if (cashierCustomers1==1 && cashierCustomers2==2 && cashierCustomers3==3){
+                    System.out.println("=============== * All Cashiers Are Full * =====================");
+                }
+                if (burgerCount<=10 && burgerCount>=1){
+                    System.out.println("======================================================================\n" +
+                            "========== * Alert : There are "+ burgerCount+" Burger are remaining * ==========");
+                } else if (burgerCount==0) {
+                    System.out.println("Burgers are out of stock");
+                }
+                System.out.println("======================================================================");
                 break;
             }
         }
@@ -194,6 +213,7 @@ public class main2 {
         System.out.println("109 or AFS: Add burgers to Stock.");
         System.out.println("110 or ACQ: View income of each Queue.");
         System.out.println("999 or EXT: Exit the Program.");
+        System.out.println("============================================================================================");
         return ;
     }
 
@@ -204,56 +224,53 @@ public class main2 {
 
     public static void main(String[] args) {
 
-        System.out.println(System.lineSeparator()+"Methods Of the foody fav ");
+        System.out.println(System.lineSeparator() + "Methods Of the foody fav ");
         System.out.println("===========*****============" + System.lineSeparator());
 
         //calling to menu method from main method
         main2 obj = new main2();
         obj.foodoptions();
 
-        //Calling a input to continue
-        Scanner route = new Scanner(System.in);
-        System.out.print("Press the method number to continue : ");
-        String inputMenu = route.nextLine().toUpperCase();
+
+        while(true){
+            //Calling a input to continue
+            Scanner route = new Scanner(System.in);
+            System.out.print("Press the method number to continue : ");
+            String inputMenu = route.nextLine().toUpperCase();
 
 
-        //Select quoue method
+            //Select quoue method
 
-        if (inputMenu.equals("100") || inputMenu.equals("VFQ")){
-            obj.viewAllQueues();
-        }
-        else if(inputMenu.equals("101") || inputMenu.equals("VEQ")){
-            obj.viewEmptyQueues();
-        }
-        else if(inputMenu.equals("102") || inputMenu.equals("ACQ")){
-            main2.customers customer = new main2.customers();
-            main2.foodQueue queue = obj.new foodQueue();
-            queue.queue();
-        }
-        else if(inputMenu.equals("103") || inputMenu.equals("RCQ")){
-            obj.RemCustomerToQueues();
-        }
-        else if(inputMenu.equals("104") || inputMenu.equals("PCQ")){
-            obj.RemServeCustomer();
-        }
-        else if(inputMenu.equals("105") || inputMenu.equals("VCS")){
-            obj.sortedCustomer();
-        }
-        else if(inputMenu.equals("106") || inputMenu.equals("SPD")){
-            obj.storeProgrameDataF();
-        }
-        else if(inputMenu.equals("107") || inputMenu.equals("LPD")){
-            obj.loadProgrameDataF();
-        }
-        else if(inputMenu.equals("108") || inputMenu.equals("STK")){
-            obj.viewRemainBurgers();
-        }
-        else if(inputMenu.equals("109") || inputMenu.equals("AFS")){
-            obj.addBurgerToStock();
-        } else if (inputMenu.equals("110") || inputMenu.equals("IFQ")) {
-            obj.ViewIncome();
-        } else if(inputMenu.equals("999") || inputMenu.equals("EXT")){
-            obj.Exit();
+            if (inputMenu.equals("100") || inputMenu.equals("VFQ")) {
+                obj.viewAllQueues();
+            } else if (inputMenu.equals("101") || inputMenu.equals("VEQ")) {
+                obj.viewEmptyQueues();
+            } else if (inputMenu.equals("102") || inputMenu.equals("ACQ")) {
+                main2.customers customer = new main2.customers();
+                main2.foodQueue queue = obj.new foodQueue();
+                queue.queue();
+            } else if (inputMenu.equals("103") || inputMenu.equals("RCQ")) {
+                obj.RemCustomerToQueues();
+            } else if (inputMenu.equals("104") || inputMenu.equals("PCQ")) {
+                obj.RemServeCustomer();
+            } else if (inputMenu.equals("105") || inputMenu.equals("VCS")) {
+                obj.sortedCustomer();
+            } else if (inputMenu.equals("106") || inputMenu.equals("SPD")) {
+                obj.storeProgrameDataF();
+            } else if (inputMenu.equals("107") || inputMenu.equals("LPD")) {
+                obj.loadProgrameDataF();
+            } else if (inputMenu.equals("108") || inputMenu.equals("STK")) {
+                obj.viewRemainBurgers();
+            } else if (inputMenu.equals("109") || inputMenu.equals("AFS")) {
+                obj.addBurgerToStock();
+            } else if (inputMenu.equals("110") || inputMenu.equals("IFQ")) {
+                obj.ViewIncome();
+            } else if (inputMenu.equals("999") || inputMenu.equals("EXT")) {
+                obj.Exit();
+            }
+            else {
+                System.out.println("Please enter the Valid Method");
+            }
         }
     }
 }
