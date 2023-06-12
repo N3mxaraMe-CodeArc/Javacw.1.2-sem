@@ -15,7 +15,7 @@ public class main2 {
         }
         System.out.println("*");
         System.out.println("Remaining burgers : "+burgerCount);
-        System.out.println("Total NUmber of customers : "+totalCustomers);
+        System.out.println("Total Number of customers : "+totalCustomers);
         System.out.println("Customers In Cashier 1 : "+cashierCustomers1);
         System.out.println("Customers In Cashier 2 : "+cashierCustomers2);
         System.out.println("Customers In Cashier 3 : "+cashierCustomers3);
