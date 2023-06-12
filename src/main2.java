@@ -19,6 +19,7 @@ public class main2 {
         System.out.println("Customers In Cashier 1 : "+cashierCustomers1);
         System.out.println("Customers In Cashier 2 : "+cashierCustomers2);
         System.out.println("Customers In Cashier 3 : "+cashierCustomers3);
+
         //Display cashier counters
 
         System.out.println("( X – Not Occupied / O – Occupied )");
@@ -28,7 +29,7 @@ public class main2 {
         System.out.println("Empty Quoues");
     }
     private void addCustomerToQueues(){
-        //add
+
     }
     private void RemCustomerToQueues(){
         System.out.println("Remove customer to quoues");
