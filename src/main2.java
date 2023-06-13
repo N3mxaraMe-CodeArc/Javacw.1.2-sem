@@ -47,7 +47,7 @@ public class main2 {
         System.out.println("Load Program Data from file");
     }
     private void viewRemainBurgers(){
-        System.out.println(burgerCount);
+        System.out.println("Remaining Burgers : "+burgerCount);
     }
     private void addBurgerToStock(){
         System.out.println("Load Program Data from file");
@@ -185,7 +185,7 @@ public class main2 {
                     route.nextLine();
                     continue;
                 }
-                if (cashierCustomers1==1 && cashierCustomers2==2 && cashierCustomers3==3){
+                if (cashierCustomers1==2 && cashierCustomers2==3 && cashierCustomers3==5){
                     System.out.println("=============== * All Cashiers Are Full * =====================");
                 }
                 if (burgerCount<=10 && burgerCount>=1){
