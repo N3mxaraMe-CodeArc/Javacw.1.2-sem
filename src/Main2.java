@@ -79,21 +79,36 @@ public class Main2 {
 
     private void viewAllQueues() {
 
+        Main2 mainProgram = new Main2();
 
+        System.out.println("Cashier No.1");
         for (String item : Queue1) {
             System.out.println(item);
         }
 
-        for (int i = 0; i < 17; i++) {
-            System.out.print("*");
+        System.out.println("Cashier No.2");
+        for (String item : Queue2) {
+            System.out.println(item);
         }
-        System.out.println("*");
-        System.out.print("*    Cashiers    ");
-        System.out.println("*");
-        for (int i = 0; i < 17; i++) {
-            System.out.print("*");
+
+        System.out.println("Cashier No.3");
+        for (String item : Queue3) {
+            System.out.println(item);
         }
-        System.out.println("*");
+
+        System.out.println("""
+                ***************************************************
+                
+                *          *************************         *
+                *          *  ---> Foody Fav <---  *         *
+                *          *************************         *
+                """);
+        mainProgram.FlowDiagram();
+
+
+
+
+
         System.out.println("Remaining burgers : " + burgerCount);
         System.out.println("Total Number of customers : " + totalCustomers);
         System.out.println("Customers In Cashier 1 : " + cashierCustomers1);
@@ -262,6 +277,51 @@ public class Main2 {
         SoldBurgers = (50 - burgerCount);
         System.out.println("Total Income : Rs." + (SoldBurgers * 650) + ".00");
     }
+    private void FlowDiagram(){
+
+        for(int i=0; i<Queue1.length; i++){
+            if (Queue1[i] != null){
+                Queue1[i] = " O ";
+            }else {
+                Queue1[i]=" X ";
+            }
+
+        }
+        for(int i=0; i<Queue2.length; i++){
+            if (Queue2[i] != null){
+                Queue2[i] = " O ";
+            }else {
+                Queue2[i]=" X ";
+            }
+
+        }
+        for(int i=0; i<Queue3.length; i++){
+            if (Queue3[i] != null){
+                Queue3[i] = " O ";
+            }else {
+                Queue3[i]=" X ";
+            }
+
+        }
+
+
+        System.out.println("""
+                Cashier 1           cashier 2            Cashier3
+                """);
+
+        System.out.println(" "+Queue1[0]+"                  "+Queue2[0]+"                  "+Queue3[0]);
+        System.out.println(" "+Queue1[1]+"                  "+Queue2[1]+"                  "+Queue3[1]);
+        System.out.println("                      "+Queue2[2]+"                  "+Queue3[2]);
+        System.out.println("                                           "+Queue3[3]);
+        System.out.println("                                           "+Queue3[4]);
+
+        System.out.println("""
+                
+                ***************************************************
+                ***************************************************
+                """);
+    }
+
 
 
     //----------------------  Name / burger Validation Part  -------------------------
