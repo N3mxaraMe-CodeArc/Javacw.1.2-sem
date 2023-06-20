@@ -6,12 +6,12 @@ public class Main2 {
     static String[] Queue2 = new String[3];
     static String[] Queue3 = new String[5];
 
-    int cashierCustomers1 = 0;
-    int cashierCustomers2 = 0;
-    int cashierCustomers3 = 0;
-    int totalCustomers = 0;
-    int burgerCount = 50;
-    int SoldBurgers = 0;
+    static int cashierCustomers1 = 0;
+    static int cashierCustomers2 = 0;
+    static int cashierCustomers3 = 0;
+    static int totalCustomers = 0;
+    static int burgerCount = 50;
+    static int SoldBurgers = 0;
     static final int MaxCashierCustomers1 = 2;
     static final int MaxCashierCustomers2 = 3;
     static final int MaxCashierCustomers3 = 5;
@@ -242,16 +242,86 @@ public class Main2 {
 
     }
 
+
     private void RemCustomerToQueues() {
-        System.out.println("Remove customer to quoues");
+        Scanner route = new Scanner(System.in);
+        System.out.print("Enter the Cashier No : ");
+        int CashierNum = route.nextInt();
+        System.out.print("Enter the Customer No : ");
+        int CustomerNum = route.nextInt();
+
+        switch (CashierNum) {
+            case 1:
+                if (CustomerNum >= 0 && CustomerNum < Queue1.length) {
+                    Queue1[CustomerNum] = null;
+                    shiftElements(Queue1, CustomerNum);
+                    cashierCustomers1--;
+                    totalCustomers--;
+                    System.out.println("Customer removed from cashier 1.\n======================================================================");
+                } else {
+                    System.out.println("Invalid customer number for cashier 1.");
+                }
+                break;
+
+            case 2:
+                if (CustomerNum >= 0 && CustomerNum < Queue2.length) {
+                    Queue2[CustomerNum] = null;
+                    shiftElements(Queue2, CustomerNum);
+                    cashierCustomers2--;
+                    totalCustomers--;
+                    System.out.println("Customer removed from cashier 2.\n======================================================================");
+                } else {
+                    System.out.println("Invalid customer number for cashier 2.");
+                }
+                break;
+
+            case 3:
+                if (CustomerNum >= 0 && CustomerNum < Queue3.length) {
+                    Queue3[CustomerNum] = null;
+                    shiftElements(Queue3, CustomerNum);
+                    cashierCustomers3--;
+                    totalCustomers--;
+                    System.out.println("Customer removed from cashier 3.\n======================================================================");
+                } else {
+                    System.out.println("Invalid customer number for cashier 3.");
+                }
+                break;
+
+            default:
+                System.out.println("Invalid cashier number. Please try again.");
+                break;
+        }
     }
+
+    // Helper method to shift elements in the queue after removing a customer
+    private void shiftElements(String[] queue, int startIndex) {
+        for (int i = startIndex; i < queue.length - 1; i++) {
+            queue[i] = queue[i + 1];
+        }
+        queue[queue.length - 1] = null;
+    }
+
+    //=================================================================================================
+
 
     private void RemServeCustomer() {
         System.out.println("Remove Served customer to quoues");
     }
 
-    private void sortedCustomer() {
-        System.out.println("View Customers Sorted in alphabetical order");
+    private int sortedCustomer() {
+        int size1 = Queue1.length - cashierCustomers1;
+        int size2 = Queue2.length - cashierCustomers2;
+        int size3 = Queue3.length - cashierCustomers3;
+
+        int shortestSize = Math.min(size1, Math.min(size2, size3));
+
+        if (shortestSize == size1) {
+            return 1;
+        } else if (shortestSize == size2) {
+            return 2;
+        } else {
+            return 3;
+        }
     }
 
     private void storeProgrameDataF() {
@@ -279,50 +349,50 @@ public class Main2 {
         SoldBurgers = (50 - burgerCount);
         System.out.println("Total Income : Rs." + (SoldBurgers * 650) + ".00");
     }
-    private void FlowDiagram(){
+    private void FlowDiagram() {
+        String[] flowQueue1 = Queue1.clone();
+        String[] flowQueue2 = Queue2.clone();
+        String[] flowQueue3 = Queue3.clone();
 
-
-        for(int i=0; i<Queue1.length; i++){
-            if (Queue1[i] != null){
-                Queue1[i] = " O ";
-            }else {
-                Queue1[i]=" X ";
+        for (int i = 0; i < flowQueue1.length; i++) {
+            if (flowQueue1[i] != null) {
+                flowQueue1[i] = " O ";
+            } else {
+                flowQueue1[i] = " X ";
             }
-
-        }
-        for(int i=0; i<Queue2.length; i++){
-            if (Queue2[i] != null){
-                Queue2[i] = " O ";
-            }else {
-                Queue2[i]=" X ";
-            }
-
-        }
-        for(int i=0; i<Queue3.length; i++){
-            if (Queue3[i] != null){
-                Queue3[i] = " O ";
-            }else {
-                Queue3[i]=" X ";
-            }
-
         }
 
+        for (int i = 0; i < flowQueue2.length; i++) {
+            if (flowQueue2[i] != null) {
+                flowQueue2[i] = " O ";
+            } else {
+                flowQueue2[i] = " X ";
+            }
+        }
+
+        for (int i = 0; i < flowQueue3.length; i++) {
+            if (flowQueue3[i] != null) {
+                flowQueue3[i] = " O ";
+            } else {
+                flowQueue3[i] = " X ";
+            }
+        }
 
         System.out.println("""
-                Cashier 1           cashier 2            Cashier3
-                """);
+        Cashier 1           cashier 2            Cashier3
+        """);
 
-        System.out.println(" "+Queue1[0]+"                  "+Queue2[0]+"                  "+Queue3[0]);
-        System.out.println(" "+Queue1[1]+"                  "+Queue2[1]+"                  "+Queue3[1]);
-        System.out.println("                      "+Queue2[2]+"                  "+Queue3[2]);
-        System.out.println("                                           "+Queue3[3]);
-        System.out.println("                                           "+Queue3[4]);
+        System.out.println(" " + flowQueue1[0] + "                  " + flowQueue2[0] + "                  " + flowQueue3[0]);
+        System.out.println(" " + flowQueue1[1] + "                  " + flowQueue2[1] + "                  " + flowQueue3[1]);
+        System.out.println("                      " + flowQueue2[2] + "                  " + flowQueue3[2]);
+        System.out.println("                                           " + flowQueue3[3]);
+        System.out.println("                                           " + flowQueue3[4]);
 
         System.out.println("""
-                
-                ***************************************************
-                ***************************************************
-                """);
+        
+        ***************************************************
+        ***************************************************
+        """);
     }
 
 
@@ -363,9 +433,9 @@ public class Main2 {
                 100 or VFQ: View all Queues.
                 101 or VEQ: View all Empty Queues.
                 102 or ACQ: Add customer to a Queue.
-                103 or RCQ: Remove a customer from a Queue. (From a specific location)
+                103 or RCQ: Remove a customer from a Queue. (From a specific location).
                 104 or PCQ: Remove a served customer.
-                105 or VCS: View Customers Sorted in alphabetical order (Do not use library sort routine)
+                105 or VCS: View Customers Sorted in alphabetical order (Do not use library sort routine).
                 106 or SPD: Store Program Data into file.
                 107 or LPD: Load Program Data from file.
                 108 or STK: View Remaining burgers Stock.
