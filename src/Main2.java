@@ -242,6 +242,7 @@ public class Main2 {
 
     }
 
+    //================================================================================================
     private void RemCustomerToQueues() {
         Scanner route = new Scanner(System.in);
         System.out.print("Enter the Cashier No : ");
@@ -291,8 +292,6 @@ public class Main2 {
                 break;
         }
     }
-
-    // Helper method to shift elements in the queue after removing a customer
     private void shiftElements(String[] queue, int startIndex) {
         for (int i = startIndex; i < queue.length - 1; i++) {
             queue[i] = queue[i + 1];
