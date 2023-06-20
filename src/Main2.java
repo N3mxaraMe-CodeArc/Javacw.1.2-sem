@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class Main2 {
 
-    String[] Queue1 = new String[2];
-    String[] Queue2 = new String[3];
-    String[] Queue3 = new String[5];
+    static String[] Queue1 = new String[2];
+    static String[] Queue2 = new String[3];
+    static String[] Queue3 = new String[5];
 
     int cashierCustomers1 = 0;
     int cashierCustomers2 = 0;
@@ -232,7 +232,7 @@ public class Main2 {
             }
             if (burgerCount <= 10 && burgerCount >= 1) {
                 System.out.println("======================================================================\n" +
-                        "========== * Alert : There are " + burgerCount + " Burger are remaining * ==========");
+                        "========== * Alert : There are " + burgerCount + " Burgers are remaining * ==========");
             } else if (burgerCount == 0) {
                 System.out.println("Burgers are out of stock");
             }
@@ -280,6 +280,7 @@ public class Main2 {
         System.out.println("Total Income : Rs." + (SoldBurgers * 650) + ".00");
     }
     private void FlowDiagram(){
+
 
         for(int i=0; i<Queue1.length; i++){
             if (Queue1[i] != null){
