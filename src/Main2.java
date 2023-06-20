@@ -242,7 +242,6 @@ public class Main2 {
 
     }
 
-
     private void RemCustomerToQueues() {
         Scanner route = new Scanner(System.in);
         System.out.print("Enter the Cashier No : ");
