@@ -31,7 +31,7 @@ public class Main2 {
         while (true) {
             //Calling a input to continue
             Scanner route = new Scanner(System.in);
-            System.out.print("Press the method number to continue : ");
+            System.out.print("Input the method number to continue : ");
             String inputMenu = route.nextLine().toUpperCase();
 
 
@@ -70,6 +70,7 @@ public class Main2 {
                     mainprogram.ViewIncome();
                     break;
                 case "999" , "EXT":
+                    mainprogram.Exit();
                     break;
                 default:
                     System.out.println("Please enter the Valid Method");
@@ -270,7 +271,8 @@ public class Main2 {
     }
 
     private void Exit() {
-        System.out.println("Load Program Data from file");
+        System.out.println("Exiting the program...");
+        System.exit(0);
     }
 
     private void ViewIncome() {
@@ -347,6 +349,7 @@ public class Main2 {
         }
         return customerName;
     }
+
 
 
     //----------------- Class burger count and Validation -------------------------------------
