@@ -5,12 +5,13 @@ public class Main2 {
     static String[] Queue1 = new String[2];
     static String[] Queue2 = new String[3];
     static String[] Queue3 = new String[5];
+    String customerName = "";
 
     static int cashierCustomers1 = 0;
     static int cashierCustomers2 = 0;
     static int cashierCustomers3 = 0;
     static int totalCustomers = 0;
-    static int totalcustomersAtPresent = 0;
+
     static int burgerCount = 50;
     static int SoldBurgers = 0;
     static final int MaxCashierCustomers1 = 2;
@@ -113,7 +114,7 @@ public class Main2 {
 
         System.out.println("Remaining burgers : " + burgerCount);
         System.out.println("Total Number of customers : " + totalCustomers);
-        System.out.println("Total Number of customers in this moment : " + totalcustomersAtPresent);
+        System.out.println("Total Number of customers in this moment : " + (cashierCustomers1+cashierCustomers2+cashierCustomers3));
         System.out.println("Customers In Cashier 1 : " + cashierCustomers1);
         System.out.println("Customers In Cashier 2 : " + cashierCustomers2);
         System.out.println("Customers In Cashier 3 : " + cashierCustomers3);
@@ -125,7 +126,7 @@ public class Main2 {
     }
 
     private void viewEmptyQueues() {
-        System.out.println("Empty Quoues");
+
     }
 
     private void addCustomerToQueues() {
@@ -149,7 +150,6 @@ public class Main2 {
                     case 1:
                         if (cashierCustomers1 < MaxCashierCustomers1) {
                             cashierCustomers1++;
-                            totalcustomersAtPresent++;
                             totalCustomers++;
 
                             for (int i = 0; i < Queue1.length; i++) {
@@ -176,7 +176,6 @@ public class Main2 {
                     case 2:
                         if (cashierCustomers2 < MaxCashierCustomers2) {
                             cashierCustomers2++;
-                            totalcustomersAtPresent++;
                             totalCustomers++;
                             for (int i = 0; i < Queue2.length; i++) {
                                 if (Queue2[i] == null) {
@@ -199,7 +198,6 @@ public class Main2 {
                     case 3:
                         if (cashierCustomers3 < MaxCashierCustomers3) {
                             cashierCustomers3++;
-                            totalcustomersAtPresent++;
                             totalCustomers++;
                             for (int i = 0; i < Queue3.length; i++) {
                                 if (Queue3[i] == null) {
@@ -254,21 +252,36 @@ public class Main2 {
 
         switch (CashierNum) {
             case 1:
-                if (CustomerNum >= 0 && CustomerNum < Queue1.length) {
-                    Queue1[CustomerNum-1] = null;
-                    shiftElements(Queue1, CustomerNum);
-                    cashierCustomers1--;
-                    totalCustomers--;
-                    System.out.println("Customer removed from cashier 1.\n======================================================================");
-                } else {
-                    System.out.println("Invalid customer number for cashier 1.");
+                if (Queue1[CustomerNum - 1] != null){
+                    if (CustomerNum >= 0 && CustomerNum < Queue1.length) {
+                        Queue1[CustomerNum-1] = null;
+                        shiftElements(Queue1, CustomerNum);
+                        cashierCustomers1--;
+                        totalCustomers--;
+                        System.out.println("Customer removed from cashier 1.\n======================================================================");
+                    } else if (CustomerNum == 2) {
+                        Queue1[1] = null;
+                        totalCustomers--;
+                        cashierCustomers1--;
+                        System.out.println("Customer removed from cashier 1.\n======================================================================");
+                    } else {
+                        System.out.println("Invalid customer number for cashier 1.");
+                    }
+                    break;
+                }else {
+                    System.out.println("There are no customers in entered space");
                 }
-                break;
 
             case 2:
-                if (CustomerNum >= 0 && CustomerNum < Queue2.length) {
+                if (Queue2[CustomerNum - 1] != null){
+                    if (CustomerNum >= 0 && CustomerNum < Queue2.length) {
                     Queue2[CustomerNum-1] = null;
                     shiftElements(Queue2, CustomerNum);
+                    cashierCustomers2--;
+                    totalCustomers--;
+                    System.out.println("Customer removed from cashier 2.\n======================================================================");
+                }else if (CustomerNum == 3) {
+                    Queue2[2] = null;
                     cashierCustomers2--;
                     totalCustomers--;
                     System.out.println("Customer removed from cashier 2.\n======================================================================");
@@ -276,18 +289,31 @@ public class Main2 {
                     System.out.println("Invalid customer number for cashier 2.");
                 }
                 break;
+                }else {
+                    System.out.println("There are no customers in entered space");
+                }
+
 
             case 3:
-                if (CustomerNum >= 0 && CustomerNum < Queue3.length) {
-                    Queue3[CustomerNum-1] = null;
-                    shiftElements(Queue3, CustomerNum);
-                    cashierCustomers3--;
-                    totalCustomers--;
-                    System.out.println("Customer removed from cashier 3.\n======================================================================");
-                } else {
-                    System.out.println("Invalid customer number for cashier 3.");
+                if (Queue3[CustomerNum - 1] != null){
+                    if (CustomerNum >= 0 && CustomerNum < Queue3.length) {
+                        Queue3[CustomerNum-1] = null;
+                        shiftElements(Queue3, CustomerNum);
+                        cashierCustomers3--;
+                        totalCustomers--;
+                        System.out.println("Customer removed from cashier 3.\n======================================================================");
+                    }else if (CustomerNum == 5) {
+                        Queue3[4] = null;
+                        cashierCustomers3--;
+                        totalCustomers--;
+                        System.out.println("Customer removed from cashier 3.\n======================================================================");
+                    } else {
+                        System.out.println("Invalid customer number for cashier 3.");
+                    }
+                    break;
+                }else {
+                    System.out.println("There are no customers in entered space");
                 }
-                break;
 
             default:
                 System.out.println("Invalid cashier number. Please try again.");
@@ -315,7 +341,6 @@ public class Main2 {
                     Queue1[0] = null;
                     shiftElements(Queue1, 0);
                     cashierCustomers1--;
-                    totalcustomersAtPresent--;
                     burgerCount = (burgerCount - 5);
                     System.out.println("1 Cashier Served Customer is Removed");
                     break;
@@ -327,7 +352,6 @@ public class Main2 {
                     Queue2[0] = null;
                     shiftElements(Queue2, 0);
                     cashierCustomers2--;
-                    totalcustomersAtPresent--;
                     burgerCount = (burgerCount - 5);
                     System.out.println("2 Cashier Served Customer is Removed");
                     break;
@@ -339,17 +363,16 @@ public class Main2 {
                     Queue3[0] = null;
                     shiftElements(Queue3, 0);
                     cashierCustomers3--;
-                    totalcustomersAtPresent--;
                     burgerCount = (burgerCount - 5);
                     System.out.println("3 Cashier Served Customer is Removed");
                     break;
                 }else {
                     System.out.println("Enter the valid Cashier Number");
                 }
-
+            default:
+                System.out.println("Enter the valid Cahier Number ");
+            }
         }
-
-    }
 
     private int sortedCustomer() {
         int size1 = Queue1.length - cashierCustomers1;
@@ -380,7 +403,23 @@ public class Main2 {
     }
 
     private void addBurgerToStock() {
-        System.out.println("Load Program Data from file");
+        Scanner route = new Scanner(System.in);
+        while (true){
+            try {
+                System.out.print("No of burgers do you added : ");
+                int addedBurgers = route.nextInt();
+
+                burgerCount = (burgerCount + addedBurgers);
+                System.out.println(addedBurgers + " Burgers added to queue");
+                System.out.println("Now there are " + burgerCount + " burgers in burger stock");
+                break;
+
+            }catch (Exception e){
+                System.out.println("! Enter the Valid Number");
+                route.nextLine();
+            }
+            break;
+        }
     }
 
     private void Exit() {
@@ -438,10 +477,7 @@ public class Main2 {
         """);
     }
 
-
-
     //----------------------  Name / burger Validation Part  -------------------------
-    String customerName = "";
 
     public String nameValid(String nameType) {
         while (true) {
@@ -463,13 +499,7 @@ public class Main2 {
         }
         return customerName;
     }
-
-
-
-    //----------------- Class burger count and Validation -------------------------------------
-
-
-    //-------------------------- Food Option Part ------------------------------------------
+        //-------------------------- Food Option Part ------------------------------------------
 
     public void foodoptions() {
         String menu = """
