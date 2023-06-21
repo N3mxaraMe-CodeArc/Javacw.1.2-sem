@@ -25,7 +25,6 @@ public class Main {
     static final int MaxCashierCustomers3 = 5;
     static final int maxCustomers = 10;
 
-
     public static void main(String[] args) {
 
         System.out.println(System.lineSeparator() + "Methods Of the foody fav ");
