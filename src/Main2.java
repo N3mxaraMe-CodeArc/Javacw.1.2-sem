@@ -127,6 +127,32 @@ public class Main2 {
 
     private void viewEmptyQueues() {
 
+        System.out.println("""
+                ============================================================================
+                ============================ * Empty Queues * ==============================
+                ============================================================================
+                """);
+
+        for(int i=0; i<Queue1.length; i++){
+            if (Queue1[i] == null){
+                System.out.println("Cashier 1 position "+ (i+1) + " is empty");
+            }
+        }
+        for(int i=0; i<Queue2.length; i++){
+            if (Queue2[i] == null){
+                System.out.println("Cashier 2 position "+ (i+1) + " is empty");
+            }
+        }
+        for(int i=0; i<Queue3.length; i++){
+            if (Queue3[i] == null){
+                System.out.println("Cashier 3 position "+ (i+1) + " is empty");
+            }
+        }
+        System.out.println("""
+                
+                ============================================================================
+                ============================================================================
+                """);
     }
 
     private void addCustomerToQueues() {
