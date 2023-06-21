@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -270,16 +271,6 @@ public class Main {
             System.out.println("======================================================================");
             break;
         }
-
-        //file writting
-
-        try {
-            FileWriter fileWriter = new FileWriter("Customers.txt");
-            fileWriter.write(firstName + " " + lastName + System.lineSeparator());
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("Error writing to file: ");
-        }
     }
 
     //================================================================================================
@@ -443,17 +434,19 @@ public class Main {
     }
 
     private void storeProgrameDataF() {
-        String programData = burgerCount + ";" + cashierCustomers1 + ";" + cashierCustomers2 + ";" + cashierCustomers3;
 
         try {
-            FileWriter writer = new FileWriter("ProgramData.txt");
-            writer.write(programData);
-            writer.close();
+            FileWriter fileWriter = new FileWriter("ProgramData.txt");
+            fileWriter.write("Cashier 1 Customers: " + Arrays.toString(Queue1) + System.lineSeparator());
+            fileWriter.write("Cashier 2 Customers: " + Arrays.toString(Queue2) + System.lineSeparator());
+            fileWriter.write("Cashier 3 Customers: " + Arrays.toString(Queue3) + System.lineSeparator());
+            fileWriter.close();
             System.out.println("Program data stored successfully.");
         } catch (IOException e) {
-            System.out.println("An error occurred while storing program data.");
+            System.out.println("Error writing to file.");
         }
     }
+
 
     private void loadProgrameDataF() {
         try (Scanner scanner = new Scanner(new File("ProgramData.txt"))) {
@@ -468,8 +461,6 @@ public class Main {
             System.out.println("Program data loaded successfully.");
         } catch (FileNotFoundException e) {
             System.out.println("Program data file not found. No data loaded.");
-        } catch (IOException e) {
-            System.out.println("An error occurred while reading the program data file.");
         }
     }
 
