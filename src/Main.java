@@ -324,7 +324,6 @@ public class Main {
                     System.out.println("There are no customers in entered space");
                 }
 
-
             case 3:
                 if (Queue3[CustomerNum - 1] != null){
                     if (CustomerNum >= 0 && CustomerNum < Queue3.length) {
@@ -451,7 +450,6 @@ public class Main {
     private void loadProgrameDataF() {
         try (Scanner scanner = new Scanner(new File("ProgramData.txt"))) {
             String programData = scanner.nextLine();
-
             String[] data = programData.split(";");
             burgerCount = Integer.parseInt(data[0]);
             cashierCustomers1 = Integer.parseInt(data[1]);
