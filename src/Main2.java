@@ -1,4 +1,9 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 
 public class Main2 {
 
@@ -266,6 +271,15 @@ public class Main2 {
             break;
         }
 
+        //file writting
+
+        try {
+            FileWriter fileWriter = new FileWriter("Customers.txt");
+            fileWriter.write(firstName + " " + lastName + System.lineSeparator());
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("Error writing to file: ");
+        }
     }
 
     //================================================================================================
@@ -400,29 +414,65 @@ public class Main2 {
             }
         }
 
-    private int sortedCustomer() {
-        int size1 = Queue1.length - cashierCustomers1;
-        int size2 = Queue2.length - cashierCustomers2;
-        int size3 = Queue3.length - cashierCustomers3;
+    private void sortedCustomer() {
 
-        int shortestSize = Math.min(size1, Math.min(size2, size3));
+        String[] mergedQueue = new String[cashierCustomers1 + cashierCustomers2 + cashierCustomers3];
+        System.arraycopy(Queue1, 0, mergedQueue, 0, cashierCustomers1);
+        System.arraycopy(Queue2, 0, mergedQueue, cashierCustomers1, cashierCustomers2);
+        System.arraycopy(Queue3, 0, mergedQueue, cashierCustomers1 + cashierCustomers2, cashierCustomers3);
 
-        if (shortestSize == size1) {
-            return 1;
-        } else if (shortestSize == size2) {
-            return 2;
-        } else {
-            return 3;
+        bubbleSort(mergedQueue);
+
+        System.out.println("Sorted Customers:");
+        for (int i = 0; i < mergedQueue.length; i++) {
+            System.out.println(mergedQueue[i]);
+        }
+    }
+
+    private void bubbleSort(String[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j].compareTo(array[j + 1]) > 0) {
+                    String temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
         }
     }
 
     private void storeProgrameDataF() {
-        System.out.println("Store Program Data into file");
+        String programData = burgerCount + ";" + cashierCustomers1 + ";" + cashierCustomers2 + ";" + cashierCustomers3;
+
+        try {
+            FileWriter writer = new FileWriter("ProgramData.txt");
+            writer.write(programData);
+            writer.close();
+            System.out.println("Program data stored successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while storing program data.");
+        }
     }
 
     private void loadProgrameDataF() {
-        System.out.println("Load Program Data from file");
+        try (Scanner scanner = new Scanner(new File("ProgramData.txt"))) {
+            String programData = scanner.nextLine();
+
+            String[] data = programData.split(";");
+            burgerCount = Integer.parseInt(data[0]);
+            cashierCustomers1 = Integer.parseInt(data[1]);
+            cashierCustomers2 = Integer.parseInt(data[2]);
+            cashierCustomers3 = Integer.parseInt(data[3]);
+
+            System.out.println("Program data loaded successfully.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Program data file not found. No data loaded.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the program data file.");
+        }
     }
+
 
     private void viewRemainBurgers() {
         System.out.println("Remaining Burgers : " + burgerCount);
