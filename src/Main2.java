@@ -10,6 +10,7 @@ public class Main2 {
     static int cashierCustomers2 = 0;
     static int cashierCustomers3 = 0;
     static int totalCustomers = 0;
+    static int totalcustomersAtPresent = 0;
     static int burgerCount = 50;
     static int SoldBurgers = 0;
     static final int MaxCashierCustomers1 = 2;
@@ -112,6 +113,7 @@ public class Main2 {
 
         System.out.println("Remaining burgers : " + burgerCount);
         System.out.println("Total Number of customers : " + totalCustomers);
+        System.out.println("Total Number of customers in this moment : " + totalcustomersAtPresent);
         System.out.println("Customers In Cashier 1 : " + cashierCustomers1);
         System.out.println("Customers In Cashier 2 : " + cashierCustomers2);
         System.out.println("Customers In Cashier 3 : " + cashierCustomers3);
@@ -147,8 +149,8 @@ public class Main2 {
                     case 1:
                         if (cashierCustomers1 < MaxCashierCustomers1) {
                             cashierCustomers1++;
+                            totalcustomersAtPresent++;
                             totalCustomers++;
-                            burgerCount = (burgerCount - 5);
 
                             for (int i = 0; i < Queue1.length; i++) {
                                 if (Queue1[i] == null) {
@@ -174,7 +176,7 @@ public class Main2 {
                     case 2:
                         if (cashierCustomers2 < MaxCashierCustomers2) {
                             cashierCustomers2++;
-                            burgerCount = (burgerCount - 5);
+                            totalcustomersAtPresent++;
                             totalCustomers++;
                             for (int i = 0; i < Queue2.length; i++) {
                                 if (Queue2[i] == null) {
@@ -197,8 +199,8 @@ public class Main2 {
                     case 3:
                         if (cashierCustomers3 < MaxCashierCustomers3) {
                             cashierCustomers3++;
+                            totalcustomersAtPresent++;
                             totalCustomers++;
-                            burgerCount = (burgerCount - 5);
                             for (int i = 0; i < Queue3.length; i++) {
                                 if (Queue3[i] == null) {
                                     Queue3[i] = firstName;
@@ -253,7 +255,7 @@ public class Main2 {
         switch (CashierNum) {
             case 1:
                 if (CustomerNum >= 0 && CustomerNum < Queue1.length) {
-                    Queue1[CustomerNum] = null;
+                    Queue1[CustomerNum-1] = null;
                     shiftElements(Queue1, CustomerNum);
                     cashierCustomers1--;
                     totalCustomers--;
@@ -265,7 +267,7 @@ public class Main2 {
 
             case 2:
                 if (CustomerNum >= 0 && CustomerNum < Queue2.length) {
-                    Queue2[CustomerNum] = null;
+                    Queue2[CustomerNum-1] = null;
                     shiftElements(Queue2, CustomerNum);
                     cashierCustomers2--;
                     totalCustomers--;
@@ -277,7 +279,7 @@ public class Main2 {
 
             case 3:
                 if (CustomerNum >= 0 && CustomerNum < Queue3.length) {
-                    Queue3[CustomerNum] = null;
+                    Queue3[CustomerNum-1] = null;
                     shiftElements(Queue3, CustomerNum);
                     cashierCustomers3--;
                     totalCustomers--;
@@ -303,7 +305,50 @@ public class Main2 {
 
 
     private void RemServeCustomer() {
-        System.out.println("Remove Served customer to quoues");
+        Scanner route = new Scanner(System.in);
+        System.out.print("Enter the Cashier Number : ");
+        int CashierNum = route.nextInt();
+
+        switch (CashierNum){
+            case 1 :
+                if (CashierNum > 0 && CashierNum <= 3) {
+                    Queue1[0] = null;
+                    shiftElements(Queue1, 0);
+                    cashierCustomers1--;
+                    totalcustomersAtPresent--;
+                    burgerCount = (burgerCount - 5);
+                    System.out.println("1 Cashier Served Customer is Removed");
+                    break;
+                }else {
+                    System.out.println("Enter the valid Cashier Number");
+                }
+            case 2:
+                if (CashierNum > 0 && CashierNum <= 3) {
+                    Queue2[0] = null;
+                    shiftElements(Queue2, 0);
+                    cashierCustomers2--;
+                    totalcustomersAtPresent--;
+                    burgerCount = (burgerCount - 5);
+                    System.out.println("2 Cashier Served Customer is Removed");
+                    break;
+                }else {
+                    System.out.println("Enter the valid Cashier Number");
+                }
+            case 3:
+                if (CashierNum > 0 && CashierNum <= 3) {
+                    Queue3[0] = null;
+                    shiftElements(Queue3, 0);
+                    cashierCustomers3--;
+                    totalcustomersAtPresent--;
+                    burgerCount = (burgerCount - 5);
+                    System.out.println("3 Cashier Served Customer is Removed");
+                    break;
+                }else {
+                    System.out.println("Enter the valid Cashier Number");
+                }
+
+        }
+
     }
 
     private int sortedCustomer() {
@@ -403,7 +448,7 @@ public class Main2 {
             Scanner route = new Scanner(System.in);
             System.out.print("Enter Your " + nameType + ": ");
             String name = route.nextLine();
-            if (!name.isEmpty() && !name.trim().isEmpty()) {
+            if (!name.isEmpty() && !name.trim().isEmpty() && !name.matches(".*[0-9!@#$%^&*(),.?\":{}|<>]+.*")) {
                 try {
                     Integer.parseInt(name);
                     System.out.println("Enter a valid name");
