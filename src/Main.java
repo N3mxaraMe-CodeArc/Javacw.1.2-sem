@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 
-public class Main2 {
+public class Main {
 
     static String[] Queue1 = new String[2];
     static String[] Queue2 = new String[3];
@@ -31,7 +31,7 @@ public class Main2 {
         System.out.println("===========*****============" + System.lineSeparator());
 
         //calling to menu method from main method
-        Main2 mainprogram = new Main2();
+        Main mainprogram = new Main();
         mainprogram.foodoptions();
 
 
@@ -87,7 +87,7 @@ public class Main2 {
 
     private void viewAllQueues() {
 
-        Main2 mainProgram = new Main2();
+        Main mainProgram = new Main();
 
         System.out.println("Cashier No.1");
         for (String item : Queue1) {
