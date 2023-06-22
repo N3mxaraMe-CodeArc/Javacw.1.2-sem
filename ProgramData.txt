@@ -1,3 +1,4 @@
-Cashier 1 Customers: [RDFJTRF, null]
-Cashier 2 Customers: [null, null, null]
-Cashier 3 Customers: [null, null, null, null, null]
+Burger count : 50;
+Cashier 1 Customers: [YTYT, UIUI]
+Cashier 2 Customers: [RYRY, null, null]
+Cashier 3 Customers: [FGFG, null, null, null, null]
