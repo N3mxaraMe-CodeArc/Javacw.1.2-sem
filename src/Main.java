@@ -261,13 +261,6 @@ public class Main {
             if (cashierCustomers1 == 2 && cashierCustomers2 == 3 && cashierCustomers3 == 5) {
                 System.out.println("=============== * All Cashiers Are Full * =====================");
             }
-            if (burgerCount <= 10 && burgerCount >= 1) {
-                System.out.println("======================================================================\n" +
-                        "========== * Alert : There are " + burgerCount + " Burgers are remaining * ==========");
-            } else if (burgerCount == 0) {
-                System.out.println("Burgers are out of stock");
-            }
-            System.out.println("======================================================================");
             break;
         }
     }
@@ -401,6 +394,13 @@ public class Main {
             default:
                 System.out.println("Enter the valid Cahier Number ");
             }
+        if (burgerCount <= 10 && burgerCount >= 1) {
+            System.out.println("======================================================================\n" +
+                    "========== * Alert : There are " + burgerCount + " Burgers are remaining * ==========");
+        } else if (burgerCount == 0) {
+            System.out.println("Burgers are out of stock");
+        }
+        System.out.println("======================================================================");
         }
 
     private void sortedCustomer() {
@@ -435,9 +435,11 @@ public class Main {
 
         try {
             FileWriter fileWriter = new FileWriter("ProgramData.txt");
+            fileWriter.write("Burger count : "+ burgerCount + ";" + System.lineSeparator());
             fileWriter.write("Cashier 1 Customers: " + Arrays.toString(Queue1) + System.lineSeparator());
             fileWriter.write("Cashier 2 Customers: " + Arrays.toString(Queue2) + System.lineSeparator());
             fileWriter.write("Cashier 3 Customers: " + Arrays.toString(Queue3) + System.lineSeparator());
+
             fileWriter.close();
             System.out.println("Program data stored successfully.");
         } catch (IOException e) {
@@ -447,19 +449,42 @@ public class Main {
 
 
     private void loadProgrameDataF() {
-        try (Scanner scanner = new Scanner(new File("ProgramData.txt"))) {
-            String programData = scanner.nextLine();
-            String[] data = programData.split(";");
-            burgerCount = Integer.parseInt(data[0]);
-            cashierCustomers1 = Integer.parseInt(data[1]);
-            cashierCustomers2 = Integer.parseInt(data[2]);
-            cashierCustomers3 = Integer.parseInt(data[3]);
+        try {
+            File file = new File("ProgramData.txt");
+            Scanner scanner = new Scanner(file);
 
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.startsWith("Burger count")) {
+                    String[] parts = line.split(": ");
+                    burgerCount = Integer.parseInt(parts[1].split(";")[0]);
+                } else if (line.startsWith("Cashier 1 Customers")) {
+                    String[] parts = line.split(": ");
+                    Queue1 = parts[1].split(", ");
+                } else if (line.startsWith("Cashier 2 Customers")) {
+                    String[] parts = line.split(": ");
+                    Queue2 = parts[1].split(", ");
+                } else if (line.startsWith("Cashier 3 Customers")) {
+                    String[] parts = line.split(": ");
+                    Queue3 = parts[1].split(", ");
+                }
+            }
+
+            scanner.close();
+            System.out.print("Burger Count :");
+            System.out.println(burgerCount);
+            System.out.print("First Cashier :");
+            System.out.println(Arrays.toString(Queue1));
+            System.out.print("Second Cashier :");
+            System.out.println(Arrays.toString(Queue2));
+            System.out.print("Third Cashier :");
+            System.out.println(Arrays.toString(Queue3));
             System.out.println("Program data loaded successfully.");
         } catch (FileNotFoundException e) {
-            System.out.println("Program data file not found. No data loaded.");
+            System.out.println("Program data file not found.");
         }
     }
+
 
 
     private void viewRemainBurgers() {
@@ -548,7 +573,7 @@ public class Main {
             Scanner route = new Scanner(System.in);
             System.out.print("Enter Your " + nameType + ": ");
             String name = route.nextLine();
-            if (!name.isEmpty() && !name.trim().isEmpty() && !name.matches(".*[0-9!@#$%^&*(),.?\":{}|<>]+.*")) {
+            if (!name.isEmpty() && !name.trim().isEmpty() && !name.matches(".*[0-9!@#$%^&*(),.?/\":{}|<>]+.*")) {
                 try {
                     Integer.parseInt(name);
                     System.out.println("Enter a valid name");
