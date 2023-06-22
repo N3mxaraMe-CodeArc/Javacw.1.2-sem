@@ -115,10 +115,10 @@ public class Main {
 
         System.out.println("""
                 ***************************************************
-                
-                *          *************************         *
-                *          *  ---> Food Fav <---  *         *
-                *          *************************         *
+                *                                                 *
+                *          *************************              *
+                *          *  ---> Food Fav <---  *               *
+                *          *************************              *
                 """);
         mainProgram.FlowDiagram();
 
@@ -295,13 +295,12 @@ public class Main {
                         Queue1[CustomerNum-1] = null;
                         shiftElements(Queue1, CustomerNum);
                         cashierCustomers1--;
-                        totalCustomers--;
+
                         System.out.println("Customer removed from cashier 1." +
                                 "\n======================================================================");
                         break;
                     } else if (CustomerNum == 2) {
                         Queue1[1] = null;
-                        totalCustomers--;
                         cashierCustomers1--;
                         System.out.println("Customer removed from cashier 1." +
                                 "\n======================================================================");
@@ -320,7 +319,6 @@ public class Main {
                         Queue2[CustomerNum-1] = null;
                         shiftElements(Queue2, CustomerNum);
                         cashierCustomers2--;
-                        totalCustomers--;
                         System.out.println("Customer removed from cashier 2." +
                                 "\n======================================================================");
                         break;

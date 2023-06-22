@@ -1,4 +1,4 @@
-Burger count : 50;
-Cashier 1 Customers: [ERG, ERSG]
+Burger count : 45;
+Cashier 1 Customers: [EFE, null]
 Cashier 2 Customers: [null, null, null]
 Cashier 3 Customers: [null, null, null, null, null]
