@@ -27,7 +27,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println(System.lineSeparator() + "Methods Of the foody fav ");
+        System.out.println(System.lineSeparator() + "Methods Of the food fav ");
         System.out.println("===========*****============" + System.lineSeparator());
 
         //calling to menu method from main method
@@ -36,7 +36,7 @@ public class Main {
 
 
         while (true) {
-            //Calling a input to continue
+            //Calling an input to continue
             Scanner route = new Scanner(System.in);
             System.out.print("Input the method number to continue : ");
             String inputMenu = route.nextLine().toUpperCase();
@@ -89,26 +89,35 @@ public class Main {
 
         Main mainProgram = new Main();
 
-        System.out.println("Cashier No.1");
+
+        System.out.println("***************************************************");
+        System.out.print("Cashier No.1 :");
         for (String item : Queue1) {
-            System.out.println(item);
+            System.out.print(item + " , ");
         }
 
-        System.out.println("Cashier No.2");
+        System.out.println();
+
+        System.out.print("Cashier No.2 : ");
         for (String item : Queue2) {
-            System.out.println(item);
+            System.out.print(item + " , ");
         }
 
-        System.out.println("Cashier No.3");
+        System.out.println();
+
+        System.out.print("Cashier No.3 : ");
         for (String item : Queue3) {
-            System.out.println(item);
+            System.out.print(item + " , ");
         }
+
+        System.out.println();
+
 
         System.out.println("""
                 ***************************************************
                 
                 *          *************************         *
-                *          *  ---> Foody Fav <---  *         *
+                *          *  ---> Food Fav <---  *         *
                 *          *************************         *
                 """);
         mainProgram.FlowDiagram();
@@ -196,12 +205,14 @@ public class Main {
                             } else if (cashierCustomers1 == MaxCashierCustomers1) {
                                 System.out.println("Warning : Cashier Number 1 is in Maximum Customers");
                             }
-
+                            System.out.println("===============================================================================");
                             break;
                         } else {
                             System.out.println("Cashier 1 is full. Please choose another cashier.");
                             continue;
+
                         }
+
 
 
                     case 2:
@@ -219,11 +230,13 @@ public class Main {
                                 System.out.println("Alert : Remaining Only 1 Customer to add Cashier Number 2");
                             } else if (cashierCustomers2 == MaxCashierCustomers2) {
                                 System.out.println("Warning : Cashier Number 2 is in Maximum Customers");
-                            }
+                            }System.out.println("===============================================================================");
+
                             break;
                         } else {
                             System.out.println("Cashier 2 is full. Please choose another cashier.");
                         }
+                        System.out.println("===============================================================================");
                         continue;
 
                     case 3:
@@ -243,10 +256,12 @@ public class Main {
                             } else if (cashierCustomers3 == MaxCashierCustomers3) {
                                 System.out.println("Warning : Cashier Number 3 is in Maximum Customers");
                             }
+                            System.out.println("===============================================================================");
                             break;
                         } else {
                             System.out.println("Cashier 3 is full. Please choose another cashier.");
                         }
+                        System.out.println("===============================================================================");
                         continue;
 
                     default:
@@ -281,40 +296,48 @@ public class Main {
                         shiftElements(Queue1, CustomerNum);
                         cashierCustomers1--;
                         totalCustomers--;
-                        System.out.println("Customer removed from cashier 1.\n======================================================================");
+                        System.out.println("Customer removed from cashier 1." +
+                                "\n======================================================================");
+                        break;
                     } else if (CustomerNum == 2) {
                         Queue1[1] = null;
                         totalCustomers--;
                         cashierCustomers1--;
-                        System.out.println("Customer removed from cashier 1.\n======================================================================");
+                        System.out.println("Customer removed from cashier 1." +
+                                "\n======================================================================");
+                        break;
                     } else {
                         System.out.println("Invalid customer number for cashier 1.");
                     }
                     break;
                 }else {
                     System.out.println("There are no customers in entered space");
-                }
+                }break;
 
             case 2:
                 if (Queue2[CustomerNum - 1] != null){
                     if (CustomerNum >= 0 && CustomerNum < Queue2.length) {
-                    Queue2[CustomerNum-1] = null;
-                    shiftElements(Queue2, CustomerNum);
-                    cashierCustomers2--;
-                    totalCustomers--;
-                    System.out.println("Customer removed from cashier 2.\n======================================================================");
-                }else if (CustomerNum == 3) {
-                    Queue2[2] = null;
-                    cashierCustomers2--;
-                    totalCustomers--;
-                    System.out.println("Customer removed from cashier 2.\n======================================================================");
-                } else {
-                    System.out.println("Invalid customer number for cashier 2.");
-                }
-                break;
+                        Queue2[CustomerNum-1] = null;
+                        shiftElements(Queue2, CustomerNum);
+                        cashierCustomers2--;
+                        totalCustomers--;
+                        System.out.println("Customer removed from cashier 2." +
+                                "\n======================================================================");
+                        break;
+                    }else if (CustomerNum == 3) {
+                        Queue2[2] = null;
+                        cashierCustomers2--;
+                        totalCustomers--;
+                        System.out.println("Customer removed from cashier 2." +
+                                "\n======================================================================");
+                        break;
+                    } else {
+                        System.out.println("Invalid customer number for cashier 2.");
+                    }
+                    break;
                 }else {
                     System.out.println("There are no customers in entered space");
-                }
+                }break;
 
             case 3:
                 if (Queue3[CustomerNum - 1] != null){
@@ -323,19 +346,24 @@ public class Main {
                         shiftElements(Queue3, CustomerNum);
                         cashierCustomers3--;
                         totalCustomers--;
-                        System.out.println("Customer removed from cashier 3.\n======================================================================");
+                        System.out.println("Customer removed from cashier 3." +
+                                "\n======================================================================");
+
                     }else if (CustomerNum == 5) {
                         Queue3[4] = null;
                         cashierCustomers3--;
                         totalCustomers--;
-                        System.out.println("Customer removed from cashier 3.\n======================================================================");
+                        System.out.println("Customer removed from cashier 3." +
+                                "\n======================================================================");
+
                     } else {
                         System.out.println("Invalid customer number for cashier 3.");
                     }
-                    break;
+
                 }else {
                     System.out.println("There are no customers in entered space");
                 }
+                break;
 
             default:
                 System.out.println("Invalid cashier number. Please try again.");
@@ -359,40 +387,53 @@ public class Main {
 
         switch (CashierNum){
             case 1 :
-                if (CashierNum > 0 && CashierNum <= 3) {
-                    Queue1[0] = null;
-                    shiftElements(Queue1, 0);
-                    cashierCustomers1--;
-                    burgerCount = (burgerCount - 5);
-                    System.out.println("1 Cashier Served Customer is Removed");
+                if (Queue1[0] != null){
+                    if (CashierNum > 0 && CashierNum <= 3) {
+                        Queue1[0] = null;
+                        shiftElements(Queue1, 0);
+                        cashierCustomers1--;
+                        burgerCount = (burgerCount - 5);
+                        System.out.println("1 Cashier Served Customer is Removed");
+                        break;
+                    }else {
+                        System.out.println("Enter the valid Cashier Number");
+                    }
                     break;
                 }else {
-                    System.out.println("Enter the valid Cashier Number");
-                }
+                    System.out.println("Already Empty");
+                }break;
             case 2:
-                if (CashierNum > 0 && CashierNum <= 3) {
-                    Queue2[0] = null;
-                    shiftElements(Queue2, 0);
-                    cashierCustomers2--;
-                    burgerCount = (burgerCount - 5);
-                    System.out.println("2 Cashier Served Customer is Removed");
-                    break;
+                if (Queue2[0] != null) {
+                    if (CashierNum > 0 && CashierNum <= 3) {
+                        Queue2[0] = null;
+                        shiftElements(Queue2, 0);
+                        cashierCustomers2--;
+                        burgerCount = (burgerCount - 5);
+                        System.out.println("2 Cashier Served Customer is Removed");
+                        break;
+                    } else {
+                        System.out.println("Enter the valid Cashier Number");
+                    }break;
                 }else {
-                    System.out.println("Enter the valid Cashier Number");
-                }
+                    System.out.println("Already Empty");
+                }break;
             case 3:
-                if (CashierNum > 0 && CashierNum <= 3) {
-                    Queue3[0] = null;
-                    shiftElements(Queue3, 0);
-                    cashierCustomers3--;
-                    burgerCount = (burgerCount - 5);
-                    System.out.println("3 Cashier Served Customer is Removed");
-                    break;
+                if (Queue3[0] != null) {
+                    if (CashierNum > 0 && CashierNum <= 3) {
+                        Queue3[0] = null;
+                        shiftElements(Queue3, 0);
+                        cashierCustomers3--;
+                        burgerCount = (burgerCount - 5);
+                        System.out.println("3 Cashier Served Customer is Removed");
+                        break;
+                    } else {
+                        System.out.println("Enter the valid Cashier Number");
+                    }break;
                 }else {
-                    System.out.println("Enter the valid Cashier Number");
-                }
+                    System.out.println("Already Empty");
+                }break;
             default:
-                System.out.println("Enter the valid Cahier Number ");
+                System.out.println("Enter the valid Cashier Number ");
             }
         if (burgerCount <= 10 && burgerCount >= 1) {
             System.out.println("======================================================================\n" +
@@ -412,9 +453,10 @@ public class Main {
 
         bubbleSort(mergedQueue);
 
-        System.out.println("Sorted Customers:");
+        System.out.print("Sorted Customers : ");
         for (int i = 0; i < mergedQueue.length; i++) {
-            System.out.println(mergedQueue[i]);
+            System.out.print(mergedQueue[i]+", ");
+            System.out.println();
         }
     }
 
@@ -597,7 +639,7 @@ public class Main {
                 102 or ACQ: Add customer to a Queue.
                 103 or RCQ: Remove a customer from a Queue. (From a specific location).
                 104 or PCQ: Remove a served customer.
-                105 or VCS: View Customers Sorted in alphabetical order (Do not use library sort routine).
+                105 or VCS: View Customers Sorted in alphabetical order.
                 106 or SPD: Store Program Data into file.
                 107 or LPD: Load Program Data from file.
                 108 or STK: View Remaining burgers Stock.
@@ -610,3 +652,4 @@ public class Main {
         return;
     }
 }
+
